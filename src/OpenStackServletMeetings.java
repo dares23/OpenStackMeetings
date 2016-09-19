@@ -94,14 +94,14 @@ public class OpenStackServletMeetings extends HttpServlet {
 				vistedUrls.add(request.getRequestURL().toString() + "?" + request.getQueryString());
 			}
 			try {	
-				Elements links = doc.select("a");
+				Elements links = doc.select("td");
 			    if(doc != null) {
 			    	ListIterator<Element> iter = links.listIterator();
 			    	while(iter.hasNext()) {
 			    		Element e = (Element) iter.next();
-			    		String s = e.html();
+			    		String s = e.text();
 			    		if ( s != null && s.contains(project)) {
-			    			printer.println(s);
+			    			printer.println(s + " " + e.nextElementSibling().text());
 			    		}
 			    	}	
 			    }  
